@@ -5,7 +5,7 @@
 #include <PID_v1.h>
 #define encodPinA1      2                       // Quadrature encoder A pin
 #define encodPinB1      8                       // Quadrature encoder B pin
-#define M1              9                       // PWM outputs to L298N H bridge motor driver module
+#define M1              9                       // PWM outputs to L298N H-Bridge motor driver module
 #define M2              10
 
 double kp = 5 , ki = 1 , kd = 0.01;             // modify for optimal performance
@@ -26,11 +26,11 @@ void setup() {
 }
 
 void loop() {
-  setpoint = analogRead(0) * 5;                       // modify  to fit motor and encoder characteristics
+  setpoint = analogRead(0) * 5;                       // modify to fit motor and encoder characteristics
   input = encoderPos ;                                // data from encoder
-  // Serial.println(setpoint - input);
+  // Serial.println(encoderPos);                      // monitor motor position
   myPID.Compute();                                    // calculate new output
-  pwmOut(output);                                     // drive L298N H bridge module
+  pwmOut(output);                                     // drive L298N H-Bridge module
 }
 
 void pwmOut(int out) {                                // to H-Bridge board
@@ -46,7 +46,7 @@ void pwmOut(int out) {                                // to H-Bridge board
 
 void encoder()  {                                     // pulse and direction, direct port reading to save cycles
   if (PINB & 0b00000001)    encoderPos++;             // if(digitalRead(encodPinB1)==HIGH)   count ++;
-  else                      encoderPos--;             // if (digitalRead(encodPinB1)==LOW)   count --;
+  else                      encoderPos--;             // if(digitalRead(encodPinB1)==LOW)   count --;
 }
 
 
