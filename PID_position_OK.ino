@@ -18,7 +18,7 @@ void setup() {
   pinMode(encodPinA1, INPUT_PULLUP);                  // quadrature encoder input A
   pinMode(encodPinB1, INPUT_PULLUP);                  // quadrature encoder input B
   attachInterrupt(0, encoder, FALLING);               // update encoder position
-  TCCR1B = TCCR1B & 0b11111000 | 1;                   // set 31Kh PWM to prevent motor noise
+  TCCR1B = TCCR1B & 0b11111000 | 1;                   // set 31KHz PWM to prevent motor noise
   myPID.SetMode(AUTOMATIC);
   myPID.SetSampleTime(1);
   myPID.SetOutputLimits(-255, 255);
