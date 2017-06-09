@@ -26,7 +26,7 @@ void setup() {
 }
 
 void loop() {
-  setpoint = analogRead(0) * 5;                       // modify to fit motor and encoder characteristics
+  setpoint = analogRead(0) * 5;                       // modify to fit motor and encoder characteristics, potmeter connected to A0
   input = encoderPos ;                                // data from encoder
   // Serial.println(encoderPos);                      // monitor motor position
   myPID.Compute();                                    // calculate new output
